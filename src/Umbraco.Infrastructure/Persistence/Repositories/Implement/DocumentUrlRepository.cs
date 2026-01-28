@@ -32,7 +32,7 @@ public class DocumentUrlRepository : IDocumentUrlRepository
         // TODO: avoid this is called as first thing on first restart after install
         IEnumerable<Guid> documentKeys = publishedDocumentUrlSegments.Select(x => x.DocumentKey).Distinct();
 
-        Dictionary<(Guid UniqueId, int LanguageId, bool isDraft, string urlSegment), DocumentUrlDto> dtoDictionary = publishedDocumentUrlSegments
+        Dictionary<(Guid UniqueId, int? LanguageId, bool isDraft, string urlSegment), DocumentUrlDto> dtoDictionary = publishedDocumentUrlSegments
             .Select(BuildDto)
             .ToDictionary(x => (x.UniqueId, x.LanguageId, x.IsDraft, x.UrlSegment));
 
@@ -94,7 +94,7 @@ public class DocumentUrlRepository : IDocumentUrlRepository
         {
             UrlSegment = dto.UrlSegment,
             DocumentKey = dto.UniqueId,
-            LanguageId = dto.LanguageId,
+            NullableLanguageId = dto.LanguageId,
             IsDraft = dto.IsDraft,
             IsPrimary = dto.IsPrimary
         };
@@ -105,7 +105,7 @@ public class DocumentUrlRepository : IDocumentUrlRepository
         {
             UrlSegment = model.UrlSegment,
             UniqueId = model.DocumentKey,
-            LanguageId = model.LanguageId,
+            LanguageId = model.NullableLanguageId,
             IsDraft = model.IsDraft,
             IsPrimary = model.IsPrimary,
         };
